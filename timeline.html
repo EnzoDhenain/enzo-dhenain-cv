@@ -13,19 +13,20 @@
 
     body {
       margin: 0;
-      background: #191919;
-      color: #f5f5f5;
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
       padding: 50px 20px;
+      background: #191919;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .timeline-wrapper {
+    .container {
       max-width: 900px;
       margin: 0 auto;
     }
 
-    /* INTRODUCTION */
+    /* =========================
+       TITRE
+    ========================= */
 
     .intro {
       margin-bottom: 45px;
@@ -33,41 +34,43 @@
 
     .intro-label {
       font-size: 12px;
+      font-weight: 600;
       letter-spacing: 2px;
       color: #7c8cff;
       margin-bottom: 12px;
-      font-weight: 600;
     }
 
-    .intro h1 {
-      margin: 0 0 12px;
+    .intro-title {
+      margin: 0 0 12px 0;
       font-size: 34px;
+      line-height: 1.2;
       font-weight: 600;
       color: #ffffff;
     }
 
-    .intro p {
+    .intro-text {
       margin: 0;
-      color: #8f8f8f;
       font-size: 15px;
       line-height: 1.6;
+      color: #8f8f8f;
     }
 
-    /* TIMELINE */
+    /* =========================
+       TIMELINE
+    ========================= */
 
     .timeline {
       position: relative;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 55px;
+      margin-bottom: 50px;
     }
 
     .timeline-line {
       position: absolute;
       top: 8px;
       left: 0;
-      width: 100%;
+      right: 0;
       height: 2px;
       background: #383838;
       z-index: 0;
@@ -87,17 +90,17 @@
     .step {
       position: relative;
       z-index: 2;
+      width: 16.66%;
       text-align: center;
       cursor: pointer;
-      width: 16.66%;
     }
 
     .dot {
       width: 16px;
       height: 16px;
+      margin: 0 auto 14px;
       border-radius: 50%;
       background: #383838;
-      margin: 0 auto 14px;
       border: 3px solid #191919;
       transition: all 0.3s ease;
     }
@@ -108,15 +111,14 @@
     }
 
     .step.active .dot {
-      box-shadow: 0 0 14px rgba(124, 140, 255, 0.45);
       transform: scale(1.15);
+      box-shadow: 0 0 14px rgba(124, 140, 255, 0.45);
     }
 
     .step-number {
-      font-size: 12px;
-      color: #666;
       margin-bottom: 7px;
-      transition: color 0.3s ease;
+      font-size: 12px;
+      color: #666666;
     }
 
     .step.active .step-number,
@@ -127,25 +129,30 @@
     .step-title {
       font-size: 13px;
       font-weight: 600;
-      color: #777;
-      transition: color 0.3s ease;
+      color: #777777;
     }
 
     .step.active .step-title {
-      color: #f5f5f5;
+      color: #ffffff;
     }
 
-    /* CONTENT */
+    /* =========================
+       CONTENU
+    ========================= */
 
     .content {
+      min-height: 190px;
+      padding: 30px 32px;
       background: #202020;
       border-left: 3px solid #7c8cff;
       border-radius: 8px;
-      padding: 30px 32px;
-      min-height: 190px;
+
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
     }
 
     .content.fade {
@@ -154,21 +161,21 @@
     }
 
     .content-number {
+      margin-bottom: 10px;
       font-size: 12px;
       letter-spacing: 1.5px;
       color: #7c8cff;
-      margin-bottom: 10px;
       text-transform: uppercase;
     }
 
-    .content h2 {
-      margin: 0 0 14px;
+    .content-title {
+      margin: 0 0 14px 0;
       font-size: 24px;
       font-weight: 600;
       color: #ffffff;
     }
 
-    .content p {
+    .content-text {
       margin: 0;
       max-width: 720px;
       font-size: 15px;
@@ -176,11 +183,9 @@
       color: #b8b8b8;
     }
 
-    .content.final {
-      border-left-color: #7c8cff;
-    }
-
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 700px) {
 
@@ -188,8 +193,12 @@
         padding: 35px 15px;
       }
 
-      .intro h1 {
+      .intro-title {
         font-size: 28px;
+      }
+
+      .intro-text {
+        font-size: 14px;
       }
 
       .timeline {
@@ -197,11 +206,6 @@
         justify-content: flex-start;
         gap: 35px;
         padding-bottom: 15px;
-      }
-
-      .timeline-line,
-      .timeline-progress {
-        width: 100%;
       }
 
       .step {
@@ -212,11 +216,11 @@
         padding: 25px 22px;
       }
 
-      .content h2 {
+      .content-title {
         font-size: 21px;
       }
 
-      .content p {
+      .content-text {
         font-size: 14px;
       }
     }
@@ -225,9 +229,11 @@
 
 <body>
 
-  <div class="timeline-wrapper">
+  <div class="container">
 
-    <!-- INTRODUCTION -->
+    <!-- =========================
+         INTRO
+    ========================= -->
 
     <div class="intro">
 
@@ -235,18 +241,20 @@
         MON PARCOURS
       </div>
 
-      <h1>
+      <h1 class="intro-title">
         De la vente au closing
       </h1>
 
-      <p>
+      <p class="intro-text">
         Une évolution construite autour de la vente, de l'adaptation et de la relation client.
       </p>
 
     </div>
 
 
-    <!-- TIMELINE -->
+    <!-- =========================
+         TIMELINE
+    ========================= -->
 
     <div class="timeline">
 
@@ -258,11 +266,7 @@
       </div>
 
 
-      <!-- 01 -->
-
-      <div
-        class="step active"
-        data-index="0">
+      <div class="step active" data-index="0">
 
         <div class="dot"></div>
 
@@ -277,11 +281,7 @@
       </div>
 
 
-      <!-- 02 -->
-
-      <div
-        class="step"
-        data-index="1">
+      <div class="step" data-index="1">
 
         <div class="dot"></div>
 
@@ -296,11 +296,7 @@
       </div>
 
 
-      <!-- 03 -->
-
-      <div
-        class="step"
-        data-index="2">
+      <div class="step" data-index="2">
 
         <div class="dot"></div>
 
@@ -315,11 +311,7 @@
       </div>
 
 
-      <!-- 04 -->
-
-      <div
-        class="step"
-        data-index="3">
+      <div class="step" data-index="3">
 
         <div class="dot"></div>
 
@@ -334,11 +326,7 @@
       </div>
 
 
-      <!-- 05 -->
-
-      <div
-        class="step"
-        data-index="4">
+      <div class="step" data-index="4">
 
         <div class="dot"></div>
 
@@ -353,11 +341,7 @@
       </div>
 
 
-      <!-- 06 -->
-
-      <div
-        class="step"
-        data-index="5">
+      <div class="step" data-index="5">
 
         <div class="dot"></div>
 
@@ -374,32 +358,22 @@
     </div>
 
 
-    <!-- CONTENT -->
+    <!-- =========================
+         CONTENU
+    ========================= -->
 
-    <div
-      class="content"
-      id="content">
+    <div class="content" id="content">
 
-      <div
-        class="content-number"
-        id="contentNumber">
-
+      <div class="content-number" id="contentNumber">
         01 — Formation
-
       </div>
 
-
-      <h2 id="contentTitle">
-
+      <h2 class="content-title" id="contentTitle">
         Formation
-
       </h2>
 
-
-      <p id="contentText">
-
+      <p class="content-text" id="contentText">
         Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux.
-
       </p>
 
     </div>
@@ -413,61 +387,38 @@
 
       {
         number: "01 — Formation",
-
         title: "Formation",
-
-        text:
-        "Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux."
+        text: "Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux."
       },
-
 
       {
         number: "02 — International",
-
         title: "International",
-
-        text:
-        "Expériences commerciales en Suisse, en Belgique et en Espagne. Ces expériences m’ont appris à m’adapter rapidement à différents environnements et interlocuteurs."
+        text: "Expériences commerciales en Suisse, en Belgique et en Espagne. Ces expériences m’ont appris à m’adapter rapidement à différents environnements et interlocuteurs."
       },
-
 
       {
         number: "03 — 12 mois à Barcelone",
-
         title: "12 mois à Barcelone",
-
-        text:
-        "Commercial en centre d’appel pendant 12 mois à Barcelone, principalement en français et en espagnol. Une expérience qui m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et ma capacité à mener des échanges commerciaux."
+        text: "Commercial en centre d’appel pendant 12 mois à Barcelone, principalement en français et en espagnol. Une expérience qui m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et ma capacité à mener des échanges commerciaux."
       },
-
 
       {
         number: "04 — Reconversion vers le Closing",
-
         title: "Reconversion vers le Closing",
-
-        text:
-        "J’ai choisi de me spécialiser dans le Closing et d’investir du temps, de l’énergie et des ressources dans une formation et un accompagnement dédiés."
+        text: "J’ai choisi de me spécialiser dans le Closing et d’investir du temps, de l’énergie et des ressources dans une formation et un accompagnement dédiés."
       },
-
 
       {
         number: "05 — Mise en pratique",
-
         title: "Mise en pratique",
-
-        text:
-        "Expérience en setting par DM sur une offre générant autour de 100K€ de cash collecté par mois. Cette expérience m’a permis de développer ma qualification des prospects et mon approche des échanges commerciaux. Aujourd’hui, je souhaite mettre mon expérience et mon énergie dans le Closing."
+        text: "Expérience en setting par DM sur une offre générant autour de 100K€ de cash collecté par mois. Cette expérience m’a permis de développer ma qualification des prospects et mon approche des échanges commerciaux. Aujourd’hui, je souhaite mettre mon expérience et mon énergie dans le Closing."
       },
-
 
       {
         number: "06 — Aujourd’hui",
-
         title: "Aujourd’hui",
-
-        text:
-        "Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en Closing et mettre mon expérience commerciale au service d’une équipe ambitieuse."
+        text: "Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en Closing et mettre mon expérience commerciale au service d’une équipe ambitieuse."
       }
 
     ];
@@ -492,9 +443,6 @@
       document.getElementById("contentText");
 
 
-    let currentIndex = 0;
-
-
     function updateProgress(index) {
 
       const percentage =
@@ -507,21 +455,14 @@
       stepElements.forEach((step, i) => {
 
         step.classList.remove("active");
-
         step.classList.remove("completed");
 
-
         if (i < index) {
-
           step.classList.add("completed");
-
         }
 
-
         if (i === index) {
-
           step.classList.add("active");
-
         }
 
       });
@@ -532,7 +473,6 @@
     function updateContent(index) {
 
       content.classList.add("fade");
-
 
       setTimeout(() => {
 
@@ -545,18 +485,6 @@
         contentText.textContent =
           steps[index].text;
 
-
-        if (index === steps.length - 1) {
-
-          content.classList.add("final");
-
-        } else {
-
-          content.classList.remove("final");
-
-        }
-
-
         content.classList.remove("fade");
 
       }, 200);
@@ -568,10 +496,7 @@
 
       step.addEventListener("click", () => {
 
-        currentIndex = index;
-
         updateProgress(index);
-
         updateContent(index);
 
       });
