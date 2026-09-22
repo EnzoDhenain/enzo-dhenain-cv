@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte photo</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+    }
+
+    .carte {
+      width: 300px;
+      height: 400px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .interieur {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s ease;
+      transform-style: preserve-3d;
+    }
+
+    .carte.retournee .interieur {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .arriere {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="carte" id="carte">
+    <div class="interieur">
+
+      <div class="face">
+        <img src="photo-dos.jpg" alt="Photo">
+      </div>
+
+      <div class="face arriere">
+        <img src="Capture d’écran 2026-04-11 à 11.58.24.png" alt="Photo">
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const carte = document.getElementById("carte");
+
+    carte.addEventListener("click", function() {
+      carte.classList.toggle("retournee");
+    });
+  </script>
+
+</body>
+</html>
