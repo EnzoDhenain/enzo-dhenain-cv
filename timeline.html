@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mon parcours — Enzo Dhenain</title>
 
 <style>
@@ -24,7 +25,9 @@ body {
     padding: 50px 30px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header {
     margin-bottom: 45px;
@@ -35,7 +38,7 @@ body {
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #8b8b8b;
+    color: #888888;
     margin-bottom: 10px;
 }
 
@@ -52,7 +55,10 @@ h1 {
     font-size: 16px;
 }
 
-/* TIMELINE */
+
+/* =========================
+   TIMELINE
+========================= */
 
 .timeline-wrapper {
     width: 100%;
@@ -65,7 +71,11 @@ h1 {
     min-width: 850px;
     display: flex;
     justify-content: space-between;
+    padding-bottom: 5px;
 }
+
+
+/* Ligne de base */
 
 .timeline-line {
     position: absolute;
@@ -73,94 +83,258 @@ h1 {
     left: 45px;
     right: 45px;
     height: 2px;
-    background: #3a3a3a;
+    background: #383838;
 }
 
-/* ETAPES */
+
+/* Ligne de progression */
+
+.timeline-progress {
+    position: absolute;
+    top: 27px;
+    left: 45px;
+    height: 2px;
+    width: 0%;
+    background: #7c8cff;
+    transition: width 0.55s cubic-bezier(.22,.61,.36,1);
+}
+
+
+/* =========================
+   ETAPES
+========================= */
 
 .step {
     position: relative;
     width: 140px;
+
     text-align: center;
+
     cursor: pointer;
+
     background: none;
     border: none;
+
     padding: 0;
+
     font-family: inherit;
+
     color: #f5f5f5;
+
+    transition: transform 0.25s ease;
 }
+
+.step:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Point */
 
 .dot {
     width: 20px;
     height: 20px;
+
     margin: 17px auto 15px;
+
     border-radius: 50%;
+
     background: #191919;
+
     border: 3px solid #555555;
+
     position: relative;
+
     z-index: 2;
-    transition: all 0.25s ease;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.step:hover .dot {
-    transform: scale(1.15);
-    border-color: #7c8cff;
-}
+
+/* Etape sélectionnée */
 
 .step.active .dot {
     background: #7c8cff;
+
     border-color: #7c8cff;
-    transform: scale(1.15);
-    box-shadow: 0 0 0 5px rgba(124, 140, 255, 0.12);
+
+    transform: scale(1.2);
+
+    box-shadow:
+        0 0 0 5px rgba(124, 140, 255, 0.12);
 }
+
+
+/* Etapes déjà parcourues */
+
+.step.completed .dot {
+    background: #7c8cff;
+
+    border-color: #7c8cff;
+}
+
+
+/* Numéro */
 
 .number {
     font-size: 11px;
+
     color: #777777;
+
     font-weight: 600;
+
+    transition: color 0.25s ease;
 }
+
+.step.active .number {
+    color: #7c8cff;
+}
+
+
+/* Titre */
 
 .step-title {
     font-size: 14px;
+
     font-weight: 700;
+
     margin-top: 5px;
+
     color: #eeeeee;
+
+    transition: color 0.25s ease;
 }
 
-/* CONTENU */
+.step.active .step-title {
+    color: #ffffff;
+}
+
+
+/* =========================
+   DERNIERE ETAPE
+========================= */
+
+.step.final-step .step-title {
+    color: #b9bdff;
+}
+
+.step.final-step .dot {
+    border-color: #686fbb;
+}
+
+.step.final-step.active .dot {
+    background: #7c8cff;
+    border-color: #7c8cff;
+}
+
+
+/* =========================
+   CONTENU
+========================= */
 
 .content {
     margin-top: 45px;
+
     padding: 30px;
+
     border: 1px solid #303030;
+
     border-radius: 18px;
+
     background: #202020;
-    transition: opacity 0.2s ease;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
+
+
+/* Petite ligne décorative */
+
+.content::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: #7c8cff;
+}
+
+
+/* Animation changement */
+
+.content.changing {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+
+/* Numéro */
 
 .content-number {
     font-size: 11px;
+
     font-weight: 700;
+
     letter-spacing: 1.5px;
+
     color: #7c8cff;
+
     text-transform: uppercase;
 }
 
+
+/* Titre */
+
 .content h2 {
     margin: 8px 0 12px;
+
     font-size: 25px;
+
     color: #f5f5f5;
 }
 
+
+/* Texte */
+
 .content p {
     margin: 0;
+
     max-width: 750px;
+
     color: #a6a6a6;
+
     font-size: 15px;
+
     line-height: 1.7;
 }
 
-/* MOBILE */
+
+/* =========================
+   AUJOURD'HUI
+========================= */
+
+.content.final-content {
+    border-color: #3a3d61;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
@@ -183,6 +357,7 @@ h1 {
 
     .content {
         margin-top: 30px;
+
         padding: 22px;
     }
 
@@ -195,9 +370,15 @@ h1 {
 </style>
 </head>
 
+
 <body>
 
 <div class="container">
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
 
     <div class="header">
 
@@ -216,19 +397,36 @@ h1 {
     </div>
 
 
+    <!-- =========================
+         TIMELINE
+    ========================= -->
+
     <div class="timeline-wrapper">
 
         <div class="timeline">
 
+            <!-- Ligne de base -->
+
             <div class="timeline-line"></div>
 
+            <!-- Ligne de progression -->
 
-            <!-- 01 -->
+            <div
+                class="timeline-progress"
+                id="timelineProgress">
+            </div>
 
-            <button class="step active"
+
+            <!-- =====================
+                 01
+            ====================== -->
+
+            <button
+                class="step active"
                 data-number="01"
                 data-title="Formation"
-                data-text="Études de commerce, gestion et finance. Une première base pour comprendre l’entreprise, les chiffres et les enjeux commerciaux.">
+                data-text="Études de commerce, gestion et finance. Une première base pour comprendre l’entreprise, les chiffres et les enjeux commerciaux."
+            >
 
                 <div class="dot"></div>
 
@@ -243,12 +441,16 @@ h1 {
             </button>
 
 
-            <!-- 02 -->
+            <!-- =====================
+                 02
+            ====================== -->
 
-            <button class="step"
+            <button
+                class="step"
                 data-number="02"
                 data-title="International"
-                data-text="Expériences commerciales dans plusieurs pays : Suisse, Belgique et Espagne. Une expérience qui m’a appris à m’adapter à différents environnements et interlocuteurs.">
+                data-text="Expériences commerciales dans plusieurs pays : Suisse, Belgique et Espagne. Une expérience qui m’a appris à m’adapter à différents environnements et interlocuteurs."
+            >
 
                 <div class="dot"></div>
 
@@ -263,12 +465,16 @@ h1 {
             </button>
 
 
-            <!-- 03 -->
+            <!-- =====================
+                 03
+            ====================== -->
 
-            <button class="step"
+            <button
+                class="step"
                 data-number="03"
                 data-title="12 mois à Barcelone"
-                data-text="Commercial en centre d’appel pendant 12 mois à Barcelone, avec une activité principalement en français et en espagnol. Cette expérience m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et mon approche commerciale.">
+                data-text="Commercial en centre d’appel pendant 12 mois à Barcelone, avec une activité principalement en français et en espagnol. Cette expérience m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et mon approche commerciale."
+            >
 
                 <div class="dot"></div>
 
@@ -283,12 +489,16 @@ h1 {
             </button>
 
 
-            <!-- 04 -->
+            <!-- =====================
+                 04
+            ====================== -->
 
-            <button class="step"
+            <button
+                class="step"
                 data-number="04"
                 data-title="Reconversion vers le closing"
-                data-text="J’ai décidé de me spécialiser dans le closing en investissant du temps, de l’énergie et des ressources dans un accompagnement dédié.">
+                data-text="J’ai décidé de me spécialiser dans le closing en investissant du temps, de l’énergie et des ressources dans un accompagnement dédié."
+            >
 
                 <div class="dot"></div>
 
@@ -303,12 +513,16 @@ h1 {
             </button>
 
 
-            <!-- 05 -->
+            <!-- =====================
+                 05
+            ====================== -->
 
-            <button class="step"
+            <button
+                class="step"
                 data-number="05"
                 data-title="Mise en pratique"
-                data-text="Expérience en setting par DM sur une offre tournant autour de 100K€ de cash collecté par mois. Aujourd’hui, je souhaite développer davantage mon expérience en closing.">
+                data-text="Expérience en setting par DM sur une offre tournant autour de 100K€ de cash collecté par mois. Aujourd’hui, je souhaite développer davantage mon expérience en closing."
+            >
 
                 <div class="dot"></div>
 
@@ -323,12 +537,16 @@ h1 {
             </button>
 
 
-            <!-- 06 -->
+            <!-- =====================
+                 06
+            ====================== -->
 
-            <button class="step"
+            <button
+                class="step final-step"
                 data-number="06"
                 data-title="Aujourd’hui"
-                data-text="Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en closing et mettre mon expérience commerciale au service d’une équipe.">
+                data-text="Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en closing et mettre mon expérience commerciale au service d’une équipe."
+            >
 
                 <div class="dot"></div>
 
@@ -347,9 +565,19 @@ h1 {
     </div>
 
 
-    <div class="content">
+    <!-- =========================
+         CONTENU
+    ========================= -->
 
-        <div class="content-number" id="contentNumber">
+    <div
+        class="content"
+        id="content"
+    >
+
+        <div
+            class="content-number"
+            id="contentNumber"
+        >
             01
         </div>
 
@@ -370,30 +598,126 @@ h1 {
 
 const steps = document.querySelectorAll(".step");
 
-const contentNumber = document.getElementById("contentNumber");
-const contentTitle = document.getElementById("contentTitle");
-const contentText = document.getElementById("contentText");
+const progress = document.getElementById("timelineProgress");
+
+const content = document.getElementById("content");
+
+const contentNumber =
+    document.getElementById("contentNumber");
+
+const contentTitle =
+    document.getElementById("contentTitle");
+
+const contentText =
+    document.getElementById("contentText");
 
 
-steps.forEach(step => {
+/* =========================
+   PROGRESSION
+========================= */
+
+function updateProgress(index) {
+
+    const totalSteps = steps.length - 1;
+
+    const percentage =
+        (index / totalSteps) * 100;
+
+    progress.style.width =
+        percentage + "%";
+
+
+    steps.forEach((step, i) => {
+
+        if (i < index) {
+
+            step.classList.add("completed");
+
+        } else {
+
+            step.classList.remove("completed");
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CHANGEMENT D'ETAPE
+========================= */
+
+steps.forEach((step, index) => {
 
     step.addEventListener("click", () => {
 
+
+        /* Retirer l'état actif */
+
         steps.forEach(item => {
+
             item.classList.remove("active");
+
         });
+
+
+        /* Activer l'étape */
 
         step.classList.add("active");
 
-        contentNumber.textContent = step.dataset.number;
 
-        contentTitle.textContent = step.dataset.title;
+        /* Animation du contenu */
 
-        contentText.textContent = step.dataset.text;
+        content.classList.add("changing");
+
+
+        setTimeout(() => {
+
+
+            contentNumber.textContent =
+                step.dataset.number;
+
+
+            contentTitle.textContent =
+                step.dataset.title;
+
+
+            contentText.textContent =
+                step.dataset.text;
+
+
+            /* Style spécial dernière étape */
+
+            if (index === steps.length - 1) {
+
+                content.classList.add("final-content");
+
+            } else {
+
+                content.classList.remove("final-content");
+
+            }
+
+
+            content.classList.remove("changing");
+
+
+        }, 180);
+
+
+        /* Mise à jour de la ligne */
+
+        updateProgress(index);
 
     });
 
 });
+
+
+/* Etat initial */
+
+updateProgress(0);
 
 </script>
 
