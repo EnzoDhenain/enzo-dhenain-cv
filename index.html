@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ma carte interactive</title>
+  <title>Carte photo</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -23,35 +27,37 @@
       cursor: pointer;
     }
 
-    .interieur {
+    .contenu {
       width: 100%;
       height: 100%;
       position: relative;
-      transition: transform 0.7s ease;
       transform-style: preserve-3d;
+      transition: transform 0.7s ease;
     }
 
-    .carte.retournee .interieur {
+    .carte.retournee .contenu {
       transform: rotateY(180deg);
     }
 
     .face {
       position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      backface-visibility: hidden;
       border-radius: 20px;
       overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .face img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
     }
 
-    .dos {
+    .arriere {
       transform: rotateY(180deg);
     }
   </style>
@@ -60,19 +66,21 @@
 <body>
 
   <div class="carte" id="carte">
-    <div class="interieur">
 
-      <!-- PHOTO AVANT -->
+    <div class="contenu">
+
+      <!-- PREMIÈRE PHOTO -->
       <div class="face">
-        <img src="photo-dos.jpg" alt="Photo">
+        <img src="photo-dos.jpg" alt="Photo 1">
       </div>
 
-      <!-- PHOTO ARRIÈRE -->
-      <div class="face dos">
-        <img src="Capture d’écran 2026-04-11 à 11.58.24.png" alt="Photo">
+      <!-- DEUXIÈME PHOTO -->
+      <div class="face arriere">
+        <img src="Capture d’écran 2026-04-11 à 11.58.24.png" alt="Photo 2">
       </div>
 
     </div>
+
   </div>
 
   <script>
