@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon parcours — Enzo Dhenain</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #ffffff;
+    color: #111111;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* TITRE */
+
+.header {
+    margin-bottom: 45px;
+}
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888888;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #777777;
+    font-size: 16px;
+}
+
+/* TIMELINE */
+
+.timeline-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 5px 15px;
+}
+
+.timeline {
+    position: relative;
+    min-width: 850px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 27px;
+    left: 45px;
+    right: 45px;
+    height: 2px;
+    background: #dddddd;
+}
+
+/* ETAPES */
+
+.step {
+    position: relative;
+    width: 140px;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    color: #111111;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    margin: 17px auto 15px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #cccccc;
+    position: relative;
+    z-index: 2;
+    transition: all 0.25s ease;
+}
+
+.step:hover .dot {
+    transform: scale(1.15);
+    border-color: #111111;
+}
+
+.step.active .dot {
+    background: #111111;
+    border-color: #111111;
+    transform: scale(1.15);
+}
+
+.number {
+    font-size: 11px;
+    color: #999999;
+    font-weight: 600;
+}
+
+.step-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* CONTENU */
+
+.content {
+    margin-top: 45px;
+    padding: 30px;
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+    background: #fafafa;
+    transition: opacity 0.2s ease;
+}
+
+.content-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #999999;
+    text-transform: uppercase;
+}
+
+.content h2 {
+    margin: 8px 0 12px;
+    font-size: 25px;
+}
+
+.content p {
+    margin: 0;
+    max-width: 750px;
+    color: #666666;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 35px 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .timeline-wrapper {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .content {
+        margin-top: 30px;
+        padding: 22px;
+    }
+
+    .content h2 {
+        font-size: 21px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="eyebrow">Mon parcours</div>
+
+        <h1>De la vente au closing</h1>
+
+        <div class="subtitle">
+            Une évolution construite autour de la vente, de l'adaptation et de la relation client.
+        </div>
+    </div>
+
+
+    <div class="timeline-wrapper">
+
+        <div class="timeline">
+
+            <div class="timeline-line"></div>
+
+
+            <!-- 01 -->
+
+            <button class="step active"
+                data-number="01"
+                data-title="Formation"
+                data-text="Études de commerce, gestion et finance. Une première base pour comprendre l’entreprise, les chiffres et les enjeux commerciaux.">
+
+                <div class="dot"></div>
+
+                <div class="number">
+                    01
+                </div>
+
+                <div class="step-title">
+                    Formation
+                </div>
+
+            </button>
+
+
+            <!-- 02 -->
+
+            <button class="step"
+                data-number="02"
+                data-title="International"
+                data-text="Expériences commerciales dans plusieurs pays : Suisse, Belgique et Espagne. Une expérience qui m’a appris à m’adapter à différents environnements et interlocuteurs.">
+
+                <div class="dot"></div>
+
+                <div class="number">
+                    02
+                </div>
+
+                <div class="step-title">
+                    International
+                </div>
+
+            </button>
+
+
+            <!-- 03 -->
+
+            <button class="step"
+                data-number="03"
+                data-title="12 mois à Barcelone"
+                data-text="Commercial en centre d’appel pendant 12 mois à Barcelone, avec une activité principalement en français et en espagnol. Cette expérience m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et mon approche commerciale.">
+
+                <div class="dot"></div>
+
+                <div class="number">
+                    03
+                </div>
+
+                <div class="step-title">
+                    Barcelone
+                </div>
+
+            </button>
+
+
+            <!-- 04 -->
+
+            <button class="step"
+                data-number="04"
+                data-title="Reconversion vers le closing"
+                data-text="J’ai décidé de me spécialiser dans le closing en investissant du temps, de l’énergie et des ressources dans un accompagnement dédié.">
+
+                <div class="dot"></div>
+
+                <div class="number">
+                    04
+                </div>
+
+                <div class="step-title">
+                    Closing
+                </div>
+
+            </button>
+
+
+            <!-- 05 -->
+
+            <button class="step"
+                data-number="05"
+                data-title="Mise en pratique"
+                data-text="Expérience en setting par DM sur une offre tournant autour de 100K€ de cash collecté par mois. Aujourd’hui, je souhaite développer davantage mon expérience en closing.">
+
+                <div class="dot"></div>
+
+                <div class="number">
+                    05
+                </div>
+
+                <div class="step-title">
+                    Mise en pratique
+                </div>
+
+            </button>
+
+
+            <!-- 06 -->
+
+            <button class="step"
+                data-number="06"
+                data-title="Aujourd’hui"
+                data-text="Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en closing et mettre mon expérience commerciale au service d’une équipe.">
+
+                <div class="dot"></div>
+
+                <div class="number">
+                    06
+                </div>
+
+                <div class="step-title">
+                    Aujourd’hui
+                </div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENU DYNAMIQUE -->
+
+    <div class="content">
+
+        <div class="content-number" id="contentNumber">
+            01
+        </div>
+
+        <h2 id="contentTitle">
+            Formation
+        </h2>
+
+        <p id="contentText">
+            Études de commerce, gestion et finance. Une première base pour comprendre l’entreprise, les chiffres et les enjeux commerciaux.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const steps = document.querySelectorAll(".step");
+
+const contentNumber = document.getElementById("contentNumber");
+const contentTitle = document.getElementById("contentTitle");
+const contentText = document.getElementById("contentText");
+
+
+steps.forEach(step => {
+
+    step.addEventListener("click", () => {
+
+        steps.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        step.classList.add("active");
+
+        contentNumber.textContent = step.dataset.number;
+
+        contentTitle.textContent = step.dataset.title;
+
+        contentText.textContent = step.dataset.text;
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
