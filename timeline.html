@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,21 +22,19 @@
       color: #f5f5f5;
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      padding: 70px 20px 100px;
+      padding: 70px 30px 100px;
     }
 
     .container {
-      width: min(1100px, 100%);
+      width: min(1400px, 100%);
       margin: 0 auto;
     }
 
-    /* =========================
-       TITRE
-    ========================= */
+    /* HEADER */
 
     .header {
       text-align: center;
-      margin-bottom: 80px;
+      margin-bottom: 90px;
     }
 
     .header-label {
@@ -48,73 +47,121 @@
 
     .header h1 {
       margin: 0;
-      font-size: clamp(34px, 6vw, 58px);
+      font-size: clamp(36px, 5vw, 58px);
       font-weight: 700;
       letter-spacing: -1.5px;
     }
 
     .header p {
       margin: 18px auto 0;
-      max-width: 600px;
+      max-width: 650px;
       color: #9a9a9a;
       font-size: 16px;
       line-height: 1.7;
     }
 
-    /* =========================
-       TIMELINE
-    ========================= */
+    /* TIMELINE */
 
     .timeline-wrapper {
       position: relative;
-      padding: 20px 0;
+      padding: 260px 0 260px;
     }
+
+    /* ligne horizontale */
 
     .timeline-line {
       position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 2px;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 2px;
       background: #383838;
-      transform: translateX(-50%);
+      transform: translateY(-50%);
     }
 
     .timeline-progress {
       position: absolute;
-      left: 50%;
-      top: 0;
-      width: 2px;
-      height: 100%;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 2px;
       background: #7c8cff;
-      transform: translateX(-50%);
+      transform: translateY(-50%);
       opacity: 0.9;
+    }
+
+    /* étapes */
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 35px;
     }
 
     .timeline-item {
       position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 100px;
+      min-height: 520px;
     }
 
-    .timeline-item:nth-child(even) {
-      justify-content: flex-end;
+    /* point central */
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #7c8cff;
+      border: 4px solid #191919;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 18px rgba(124,140,255,0.45);
+      z-index: 10;
     }
+
+    /* numéro */
+
+    .timeline-number {
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 43px);
+      transform: translateX(-50%);
+      color: #7c8cff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 5;
+    }
+
+    /* cartes */
 
     .timeline-content {
-      width: calc(50% - 70px);
+      position: absolute;
+      left: 0;
+      width: 100%;
       background: #202020;
       border-radius: 12px;
-      padding: 30px;
-      position: relative;
+      padding: 25px;
       border-left: 3px solid #7c8cff;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.18);
 
       opacity: 0;
-      transform: translateY(25px);
       animation: fadeUp 0.8s ease forwards;
+    }
+
+    /* cartes du haut */
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      bottom: calc(50% + 45px);
+      transform: translateY(25px);
+    }
+
+    /* cartes du bas */
+
+    .timeline-item:nth-child(even) .timeline-content {
+      top: calc(50% + 45px);
+      transform: translateY(-25px);
     }
 
     .timeline-item:nth-child(1) .timeline-content {
@@ -141,11 +188,6 @@
       animation-delay: 0.6s;
     }
 
-    .timeline-content:hover {
-      transform: translateY(-4px);
-      transition: transform 0.25s ease;
-    }
-
     @keyframes fadeUp {
       to {
         opacity: 1;
@@ -153,147 +195,103 @@
       }
     }
 
-    /* =========================
-       POINT CENTRAL
-    ========================= */
-
-    .timeline-dot {
-      position: absolute;
-      left: 50%;
-      top: 30px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #7c8cff;
-      border: 4px solid #191919;
-      transform: translateX(-50%);
-      box-shadow: 0 0 18px rgba(124, 140, 255, 0.45);
-      z-index: 5;
+    .timeline-content:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+      border-left-color: #9aa5ff;
     }
-
-    .timeline-number {
-      position: absolute;
-      top: 27px;
-      color: #7c8cff;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .timeline-item:nth-child(odd) .timeline-number {
-      left: calc(50% + 35px);
-    }
-
-    .timeline-item:nth-child(even) .timeline-number {
-      right: calc(50% + 35px);
-    }
-
-    /* =========================
-       TEXTE
-    ========================= */
 
     .timeline-content h2 {
-      margin: 0 0 16px;
-      font-size: 23px;
+      margin: 0 0 14px;
+      font-size: 21px;
       line-height: 1.25;
-      color: #ffffff;
+      color: #fff;
     }
 
     .timeline-content p {
       margin: 0;
       color: #a8a8a8;
-      font-size: 15px;
-      line-height: 1.75;
+      font-size: 14px;
+      line-height: 1.7;
     }
 
-    .timeline-content strong {
-      color: #ffffff;
-    }
+    /* dernière étape */
 
-    /* =========================
-       DERNIER POINT
-    ========================= */
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
+    .timeline-item:last-child .timeline-dot {
+      width: 21px;
+      height: 21px;
+      box-shadow:
+        0 0 0 5px rgba(124,140,255,0.08),
+        0 0 25px rgba(124,140,255,0.55);
     }
 
     .timeline-item:last-child .timeline-content {
       border-left-color: #7c8cff;
     }
 
-    .timeline-item:last-child .timeline-dot {
-      width: 19px;
-      height: 19px;
-      box-shadow:
-        0 0 0 5px rgba(124, 140, 255, 0.08),
-        0 0 25px rgba(124, 140, 255, 0.55);
-    }
+    /* MOBILE */
 
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 750px) {
+    @media (max-width: 1000px) {
 
       body {
-        padding: 50px 18px 70px;
+        padding: 50px 20px 80px;
       }
 
       .header {
-        margin-bottom: 55px;
+        margin-bottom: 60px;
       }
 
-      .header h1 {
-        font-size: 36px;
+      .timeline-wrapper {
+        padding: 40px 0;
       }
 
-      .header p {
-        font-size: 15px;
+      .timeline {
+        display: block;
       }
 
       .timeline-line,
       .timeline-progress {
         left: 10px;
+        right: auto;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        height: 100%;
         transform: none;
       }
 
-      .timeline-item,
-      .timeline-item:nth-child(even) {
-        justify-content: flex-end;
-        padding-left: 35px;
+      .timeline-item {
+        min-height: 0;
+        padding-left: 40px;
         margin-bottom: 60px;
       }
 
-      .timeline-content {
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        position: relative;
+        left: auto;
+        top: auto;
+        bottom: auto;
         width: 100%;
-        padding: 24px;
+        transform: none;
       }
 
       .timeline-dot {
         left: 10px;
-        top: 27px;
+        top: 30px;
         transform: translateX(-50%);
       }
 
-      .timeline-number,
-      .timeline-item:nth-child(odd) .timeline-number,
-      .timeline-item:nth-child(even) .timeline-number {
+      .timeline-number {
         position: relative;
-        top: auto;
         left: auto;
-        right: auto;
-        display: block;
+        top: auto;
+        transform: none;
         margin-bottom: 10px;
       }
 
-      .timeline-content h2 {
-        font-size: 21px;
-      }
-
-      .timeline-content p {
-        font-size: 14px;
-        line-height: 1.7;
+      .timeline-content {
+        opacity: 1;
+        animation: none;
       }
     }
   </style>
@@ -303,197 +301,221 @@
 
   <div class="container">
 
-    <!-- =========================
-         TITRE
-    ========================= -->
-
     <header class="header">
-      <div class="header-label">MON PARCOURS</div>
 
-      <h1>De la vente au closing</h1>
+      <div class="header-label">
+        MON PARCOURS
+      </div>
+
+      <h1>
+        De la vente au closing
+      </h1>
 
       <p>
         Une évolution construite autour de la vente, de l'adaptation et de la relation client.
       </p>
+
     </header>
 
-
-    <!-- =========================
-         TIMELINE
-    ========================= -->
 
     <div class="timeline-wrapper">
 
       <div class="timeline-line"></div>
+
       <div class="timeline-progress"></div>
 
 
-      <!-- 01 -->
-
-      <div class="timeline-item">
-
-        <div class="timeline-number">
-          01
-        </div>
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <h2>Formation</h2>
-
-          <p>
-            J’ai étudié le commerce, la gestion et la finance.
-            Ça m’a donné de premières bases pour comprendre comment
-            fonctionne une entreprise, mais aussi l’importance des
-            chiffres et des résultats.
-          </p>
-
-        </div>
-
-      </div>
+      <div class="timeline">
 
 
-      <!-- 02 -->
+        <!-- 01 -->
 
-      <div class="timeline-item">
+        <div class="timeline-item">
 
-        <div class="timeline-number">
-          02
-        </div>
+          <div class="timeline-number">
+            01
+          </div>
 
-        <div class="timeline-dot"></div>
+          <div class="timeline-dot"></div>
 
-        <div class="timeline-content">
+          <div class="timeline-content">
 
-          <h2>International</h2>
+            <h2>
+              Formation
+            </h2>
 
-          <p>
-            J’ai eu l’occasion de travailler en Suisse, en Belgique
-            et en Espagne. Découvrir différentes façons de travailler
-            et échanger avec des personnes très différentes m’a beaucoup
-            appris sur l’adaptation, la communication et mon aisance à l’oral.
-          </p>
+            <p>
+              J’ai étudié le commerce, la gestion et la finance.
+              Ça m’a donné de premières bases pour comprendre comment
+              fonctionne une entreprise, mais aussi l’importance des
+              chiffres et des résultats.
+            </p>
+
+          </div>
 
         </div>
 
-      </div>
 
+        <!-- 02 -->
 
-      <!-- 03 -->
+        <div class="timeline-item">
 
-      <div class="timeline-item">
+          <div class="timeline-number">
+            02
+          </div>
 
-        <div class="timeline-number">
-          03
-        </div>
+          <div class="timeline-dot"></div>
 
-        <div class="timeline-dot"></div>
+          <div class="timeline-content">
 
-        <div class="timeline-content">
+            <h2>
+              International
+            </h2>
 
-          <h2>12 mois à Barcelone</h2>
+            <p>
+              J’ai eu l’occasion de travailler en Suisse, en Belgique
+              et en Espagne. Découvrir différentes façons de travailler
+              et échanger avec des personnes très différentes m’a beaucoup
+              appris sur l’adaptation, la communication et mon aisance à l’oral.
+            </p>
 
-          <p>
-            Commercial en centre d’appel pendant 12 mois, principalement
-            en français et en espagnol. Une expérience intensive qui m’a
-            permis de renforcer mon aisance à l’oral, ma capacité à argumenter
-            et ma maîtrise des échanges commerciaux dans un environnement
-            orienté résultats et rémunéré à la performance.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <!-- 04 -->
-
-      <div class="timeline-item">
-
-        <div class="timeline-number">
-          04
-        </div>
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <h2>Reconversion vers le Closing</h2>
-
-          <p>
-            Après cette expérience, j’ai eu envie d’aller plus loin dans
-            la vente et de me spécialiser dans le Closing. J’ai donc investi
-            du temps, de l’énergie et des ressources dans un accompagnement
-            pour apprendre et travailler ma technique.
-            <br><br>
-            Pour moi, le Closing est aussi un vrai challenge personnel.
-            J’ai envie de vendre quelque chose auquel je crois, de bien faire
-            les choses et de sentir que mon travail a un réel impact.
-          </p>
+          </div>
 
         </div>
 
-      </div>
 
+        <!-- 03 -->
 
-      <!-- 05 -->
+        <div class="timeline-item">
 
-      <div class="timeline-item">
+          <div class="timeline-number">
+            03
+          </div>
 
-        <div class="timeline-number">
-          05
-        </div>
+          <div class="timeline-dot"></div>
 
-        <div class="timeline-dot"></div>
+          <div class="timeline-content">
 
-        <div class="timeline-content">
+            <h2>
+              12 mois à Barcelone
+            </h2>
 
-          <h2>Mise en pratique</h2>
+            <p>
+              Commercial en centre d’appel pendant 12 mois, principalement
+              en français et en espagnol. Une expérience intensive qui m’a
+              permis de renforcer mon aisance à l’oral, ma capacité à argumenter
+              et ma maîtrise des échanges commerciaux dans un environnement
+              orienté résultats et rémunéré à la performance.
+            </p>
 
-          <p>
-            J’ai ensuite eu une première expérience en Setting DM sur une
-            offre qui génère autour de 100K€ de cash collecté par mois.
-            J’ai pu apprendre à prospecter, qualifier les prospects et
-            surtout à avoir de vraies conversations avec eux.
-            <br><br>
-            Sur l’offre, 34K€ de cash ont été collectés en juin et 29K€
-            en juillet, ce qui représente en moyenne environ 30% du cash
-            collecté. Cette expérience m’a beaucoup appris sur la prospection
-            et la qualification.
-            <br><br>
-            Aujourd’hui, j’ai envie de me concentrer sur ce qui m’anime
-            vraiment : le Closing.
-          </p>
+          </div>
 
         </div>
 
-      </div>
 
+        <!-- 04 -->
 
-      <!-- 06 -->
+        <div class="timeline-item">
 
-      <div class="timeline-item">
+          <div class="timeline-number">
+            04
+          </div>
 
-        <div class="timeline-number">
-          06
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h2>
+              Reconversion vers le Closing
+            </h2>
+
+            <p>
+              Après cette expérience, j’ai eu envie d’aller plus loin dans
+              la vente et de me spécialiser dans le Closing. J’ai donc investi
+              du temps, de l’énergie et des ressources dans un accompagnement
+              pour apprendre et travailler ma technique.
+
+              <br><br>
+
+              Pour moi, le Closing est aussi un vrai challenge personnel.
+              J’ai envie de vendre quelque chose auquel je crois, de bien faire
+              les choses et de sentir que mon travail a un réel impact.
+            </p>
+
+          </div>
+
         </div>
 
-        <div class="timeline-dot"></div>
 
-        <div class="timeline-content">
+        <!-- 05 -->
 
-          <h2>Aujourd’hui</h2>
+        <div class="timeline-item">
 
-          <p>
-            Aujourd’hui, je veux me lancer pleinement dans le Closing.
-            Je cherche une équipe dans laquelle je peux apprendre,
-            progresser et m’investir pleinement, tout en mettant mon
-            expérience commerciale et mon envie de tout déchirer au
-            service de l’équipe.
-          </p>
+          <div class="timeline-number">
+            05
+          </div>
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h2>
+              Mise en pratique
+            </h2>
+
+            <p>
+              J’ai ensuite eu une première expérience en Setting DM sur une
+              offre qui génère autour de 100K€ de cash collecté par mois.
+              J’ai pu apprendre à prospecter, qualifier les prospects et
+              surtout à avoir de vraies conversations avec eux.
+
+              <br><br>
+
+              Sur l’offre, 34K€ de cash ont été collectés en juin et 29K€
+              en juillet, soit autour de 30% du cash collecté sur ces deux mois.
+              
+              Cette expérience m’a beaucoup appris sur la prospection
+              et la qualification.
+
+              <br><br>
+
+              Aujourd’hui, j’ai envie de me concentrer sur ce qui m’anime
+              vraiment : le Closing.
+            </p>
+
+          </div>
 
         </div>
+
+
+        <!-- 06 -->
+
+        <div class="timeline-item">
+
+          <div class="timeline-number">
+            06
+          </div>
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h2>
+              Aujourd’hui
+            </h2>
+
+            <p>
+              Aujourd’hui, je veux me lancer pleinement dans le Closing.
+              Je cherche une équipe dans laquelle je peux apprendre,
+              progresser et m’investir pleinement, tout en mettant mon
+              expérience commerciale et mon envie de tout déchirer au
+              service de l’équipe.
+            </p>
+
+          </div>
+
+        </div>
+
 
       </div>
 
@@ -503,3 +525,4 @@
 
 </body>
 </html>
+```
