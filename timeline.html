@@ -1,645 +1,700 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mon parcours — Enzo Dhenain</title>
+<title>Mon parcours — Enzo Dhenain</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #191919;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 70px 7%;
+}
+
+/* =========================
+   TITRE
+========================= */
+
+.header {
+    margin-bottom: 80px;
+}
+
+.label {
+    color: #888;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: clamp(45px, 7vw, 80px);
+    margin: 0 0 25px 0;
+    letter-spacing: -3px;
+}
+
+.intro {
+    color: #999;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 650px;
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline-scroll {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0 20px 0;
+}
+
+.timeline {
+    position: relative;
+
+    /* FORCE LA TIMELINE À RESTER HORIZONTALE */
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    min-width: 1000px;
+
+    justify-content: space-between;
+}
+
+
+/* ligne */
+
+.timeline-line {
+    position: absolute;
+
+    left: 4%;
+    right: 4%;
+    top: 25px;
+
+    height: 2px;
+
+    background: #3b3b3b;
+
+    z-index: 1;
+}
+
+
+/* ligne active */
+
+.timeline-progress {
+    position: absolute;
+
+    left: 4%;
+    top: 25px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #7c8cff;
+
+    z-index: 2;
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================
+   ETAPES
+========================= */
+
+.step {
+    position: relative;
+
+    width: 16.66%;
+
+    flex-shrink: 0;
+
+    text-align: center;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    z-index: 3;
+}
+
+
+/* cercle */
+
+.circle {
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 18px auto;
+
+    border-radius: 50%;
+
+    border: 2px solid #444;
+
+    background: #191919;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #777;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+/* titre */
+
+.step-name {
+    font-size: 14px;
+
+    color: #777;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+
+/* étape active */
+
+.step.active .circle {
+    background: #7c8cff;
+
+    border-color: #7c8cff;
+
+    color: white;
+
+    box-shadow: 0 0 0 7px rgba(124,140,255,0.10);
+}
+
+.step.active .step-name {
+    color: white;
+}
+
+
+/* hover */
+
+.step:hover .circle {
+    border-color: #7c8cff;
+}
+
+.step:hover .step-name {
+    color: white;
+}
+
+
+/* =========================
+   TEXTE
+========================= */
+
+.content {
+    margin-top: 90px;
+
+    max-width: 850px;
+
+    text-align: left;
+
+    min-height: 320px;
+}
+
+.content-number {
+    color: #7c8cff;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.content h2 {
+    font-size: 42px;
+
+    margin: 0 0 25px 0;
+
+    letter-spacing: -1px;
+}
+
+.content-text {
+    color: #a5a5a5;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+.content-text p {
+    margin: 0 0 20px 0;
+}
+
+
+/* =========================
+   RETOUR
+========================= */
+
+.back {
+    display: inline-block;
+
+    margin-top: 50px;
+
+    color: #888;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.back:hover {
+    color: white;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
 
     body {
-      background: #191919;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-      padding: 70px 7%;
+        padding: 45px 25px;
     }
-
-    /* =========================
-       TITRE
-    ========================= */
 
     .header {
-      max-width: 900px;
-      margin-bottom: 80px;
+        margin-bottom: 50px;
     }
 
-    .small-title {
-      font-size: 14px;
-      letter-spacing: 3px;
-      color: #8b8b8b;
-      font-weight: 600;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: 0.95;
-      letter-spacing: -3px;
-      margin-bottom: 25px;
-      font-weight: 700;
-    }
-
-    .intro {
-      color: #a7a7a7;
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 650px;
-    }
-
-    /* =========================
-       TIMELINE
-    ========================= */
-
-    .timeline-container {
-      width: 100%;
-      overflow-x: auto;
-      padding: 20px 0 15px;
-      scrollbar-width: thin;
+    .timeline-scroll {
+        width: calc(100vw - 25px);
     }
 
     .timeline {
-      min-width: 900px;
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      align-items: start;
+        min-width: 950px;
     }
-
-    /* Ligne grise */
-
-    .line {
-      position: absolute;
-      top: 22px;
-      left: 8.33%;
-      right: 8.33%;
-      height: 2px;
-      background: #3a3a3a;
-      z-index: 0;
-    }
-
-    /* Ligne active */
-
-    .line-active {
-      position: absolute;
-      top: 22px;
-      left: 8.33%;
-      width: 0%;
-      height: 2px;
-      background: #7c8cff;
-      z-index: 1;
-      transition: width 0.4s ease;
-    }
-
-    /* =========================
-       ETAPES
-    ========================= */
-
-    .step {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-      font-family: inherit;
-      padding: 0 8px;
-    }
-
-    .number {
-      width: 45px;
-      height: 45px;
-      margin: 0 auto 18px;
-
-      border: 2px solid #4a4a4a;
-      border-radius: 50%;
-
-      background: #191919;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 13px;
-      font-weight: 700;
-
-      color: #8f8f8f;
-
-      transition: all 0.3s ease;
-    }
-
-    .step-title {
-      font-size: 14px;
-      color: #777777;
-      font-weight: 600;
-      white-space: nowrap;
-      transition: all 0.3s ease;
-    }
-
-    /* Etape active */
-
-    .step.active .number {
-      border-color: #7c8cff;
-      background: #7c8cff;
-      color: #ffffff;
-      box-shadow: 0 0 0 7px rgba(124, 140, 255, 0.08);
-    }
-
-    .step.active .step-title {
-      color: #ffffff;
-    }
-
-    .step:hover .number {
-      border-color: #7c8cff;
-    }
-
-    .step:hover .step-title {
-      color: #ffffff;
-    }
-
-    /* =========================
-       CONTENU
-    ========================= */
 
     .content {
-      margin-top: 90px;
-      max-width: 850px;
-      min-height: 300px;
-      text-align: left;
-    }
-
-    .content-number {
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: #7c8cff;
-      font-weight: 700;
-      margin-bottom: 15px;
+        margin-top: 60px;
     }
 
     .content h2 {
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.1;
-      margin-bottom: 25px;
-      letter-spacing: -1.5px;
+        font-size: 34px;
     }
 
-    .content-text {
-      color: #a5a5a5;
-      font-size: 17px;
-      line-height: 1.8;
-    }
+}
 
-    .content-text p {
-      margin-bottom: 20px;
-    }
-
-    /* =========================
-       BOUTON RETOUR
-    ========================= */
-
-    .back {
-      display: inline-block;
-      margin-top: 60px;
-
-      color: #8e8e8e;
-      text-decoration: none;
-
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
-
-    .back:hover {
-      color: #ffffff;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 700px) {
-
-      body {
-        padding: 45px 25px;
-      }
-
-      .header {
-        margin-bottom: 55px;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .intro {
-        font-size: 16px;
-      }
-
-      /*
-        La timeline reste HORIZONTALE
-        même sur téléphone.
-      */
-
-      .timeline-container {
-        margin-right: -25px;
-        padding-right: 25px;
-      }
-
-      .timeline {
-        min-width: 850px;
-      }
-
-      .content {
-        margin-top: 65px;
-      }
-
-      .content-text {
-        font-size: 16px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 
 <body>
 
-  <!-- =========================
-       TITRE
-  ========================= -->
 
-  <header class="header">
+<!-- =========================
+     TITRE
+========================= -->
 
-    <div class="small-title">
-      MON PARCOURS
+<div class="header">
+
+    <div class="label">
+        MON PARCOURS
     </div>
 
     <h1>
-      De la vente au closing
+        De la vente au closing
     </h1>
 
-    <p class="intro">
-      Une évolution construite autour de la vente,
-      de l'adaptation et de la relation client.
-    </p>
+    <div class="intro">
+        Une évolution construite autour de la vente,
+        de l'adaptation et de la relation client.
+    </div>
 
-  </header>
+</div>
 
 
-  <!-- =========================
-       TIMELINE HORIZONTALE
-  ========================= -->
 
-  <div class="timeline-container">
+<!-- =========================
+     TIMELINE HORIZONTALE
+========================= -->
+
+<div class="timeline-scroll">
 
     <div class="timeline">
 
-      <!-- Ligne -->
+        <div class="timeline-line"></div>
 
-      <div class="line"></div>
-
-      <div class="line-active" id="lineActive"></div>
-
-
-      <!-- 01 -->
-
-      <button class="step active" onclick="showStep(0)">
-
-        <div class="number">
-          01
+        <div
+            class="timeline-progress"
+            id="progress">
         </div>
 
-        <div class="step-title">
-          Formation
-        </div>
 
-      </button>
+        <!-- 01 -->
 
+        <button
+            class="step active"
+            onclick="showStep(0)">
 
-      <!-- 02 -->
+            <div class="circle">
+                01
+            </div>
 
-      <button class="step" onclick="showStep(1)">
+            <div class="step-name">
+                Formation
+            </div>
 
-        <div class="number">
-          02
-        </div>
-
-        <div class="step-title">
-          International
-        </div>
-
-      </button>
+        </button>
 
 
-      <!-- 03 -->
+        <!-- 02 -->
 
-      <button class="step" onclick="showStep(2)">
+        <button
+            class="step"
+            onclick="showStep(1)">
 
-        <div class="number">
-          03
-        </div>
+            <div class="circle">
+                02
+            </div>
 
-        <div class="step-title">
-          Barcelone
-        </div>
+            <div class="step-name">
+                International
+            </div>
 
-      </button>
-
-
-      <!-- 04 -->
-
-      <button class="step" onclick="showStep(3)">
-
-        <div class="number">
-          04
-        </div>
-
-        <div class="step-title">
-          Closing
-        </div>
-
-      </button>
+        </button>
 
 
-      <!-- 05 -->
+        <!-- 03 -->
 
-      <button class="step" onclick="showStep(4)">
+        <button
+            class="step"
+            onclick="showStep(2)">
 
-        <div class="number">
-          05
-        </div>
+            <div class="circle">
+                03
+            </div>
 
-        <div class="step-title">
-          Mise en pratique
-        </div>
+            <div class="step-name">
+                Barcelone
+            </div>
 
-      </button>
+        </button>
 
 
-      <!-- 06 -->
+        <!-- 04 -->
 
-      <button class="step" onclick="showStep(5)">
+        <button
+            class="step"
+            onclick="showStep(3)">
 
-        <div class="number">
-          06
-        </div>
+            <div class="circle">
+                04
+            </div>
 
-        <div class="step-title">
-          Aujourd'hui
-        </div>
+            <div class="step-name">
+                Closing
+            </div>
 
-      </button>
+        </button>
+
+
+        <!-- 05 -->
+
+        <button
+            class="step"
+            onclick="showStep(4)">
+
+            <div class="circle">
+                05
+            </div>
+
+            <div class="step-name">
+                Mise en pratique
+            </div>
+
+        </button>
+
+
+        <!-- 06 -->
+
+        <button
+            class="step"
+            onclick="showStep(5)">
+
+            <div class="circle">
+                06
+            </div>
+
+            <div class="step-name">
+                Aujourd'hui
+            </div>
+
+        </button>
 
     </div>
 
-  </div>
+</div>
 
 
-  <!-- =========================
-       TEXTE SOUS LA TIMELINE
-  ========================= -->
 
-  <section class="content">
+<!-- =========================
+     TEXTE SOUS LA TIMELINE
+========================= -->
 
-    <div class="content-number" id="contentNumber">
-      01
+<div class="content">
+
+    <div
+        class="content-number"
+        id="contentNumber">
+        01
     </div>
 
     <h2 id="contentTitle">
-      Formation
+        Formation
     </h2>
 
-    <div class="content-text" id="contentText">
+    <div
+        class="content-text"
+        id="contentText">
 
-      <p>
-        J’ai étudié le commerce, la gestion et la finance.
-        Ça m’a donné de premières bases pour comprendre
-        comment fonctionne une entreprise, mais aussi
-        l’importance des chiffres et des résultats.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       RETOUR
-  ========================= -->
-
-  <a href="index.html" class="back">
-    ← Retour
-  </a>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
-  <script>
-
-    const steps = document.querySelectorAll(".step");
-
-    const contentNumber =
-      document.getElementById("contentNumber");
-
-    const contentTitle =
-      document.getElementById("contentTitle");
-
-    const contentText =
-      document.getElementById("contentText");
-
-    const lineActive =
-      document.getElementById("lineActive");
-
-
-    const data = [
-
-      {
-        number: "01",
-        title: "Formation",
-        text: `
-          <p>
+        <p>
             J’ai étudié le commerce, la gestion et la finance.
             Ça m’a donné de premières bases pour comprendre
             comment fonctionne une entreprise, mais aussi
             l’importance des chiffres et des résultats.
-          </p>
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<a
+    href="index.html"
+    class="back">
+    ← Retour
+</a>
+
+
+
+<script>
+
+const steps = document.querySelectorAll(".step");
+
+const contentNumber =
+    document.getElementById("contentNumber");
+
+const contentTitle =
+    document.getElementById("contentTitle");
+
+const contentText =
+    document.getElementById("contentText");
+
+const progress =
+    document.getElementById("progress");
+
+
+const data = [
+
+    {
+        number: "01",
+        title: "Formation",
+
+        text: `
+        <p>
+        J’ai étudié le commerce, la gestion et la finance.
+        Ça m’a donné de premières bases pour comprendre
+        comment fonctionne une entreprise, mais aussi
+        l’importance des chiffres et des résultats.
+        </p>
         `
-      },
+    },
 
 
-      {
+    {
         number: "02",
         title: "International",
+
         text: `
-          <p>
-            J’ai eu l’occasion de travailler en Suisse,
-            en Belgique et en Espagne.
-            Découvrir différentes façons de travailler et
-            échanger avec des personnes très différentes
-            m’a beaucoup appris sur l’adaptation,
-            la communication et mon aisance à l’oral.
-          </p>
+        <p>
+        J’ai eu l’occasion de travailler en Suisse,
+        en Belgique et en Espagne.
+        Découvrir différentes façons de travailler et
+        échanger avec des personnes très différentes
+        m’a beaucoup appris sur l’adaptation,
+        la communication et mon aisance à l’oral.
+        </p>
         `
-      },
+    },
 
 
-      {
+    {
         number: "03",
         title: "12 mois à Barcelone",
+
         text: `
-          <p>
-            Commercial en centre d’appel pendant 12 mois,
-            principalement en français et en espagnol.
-            Une expérience intensive qui m’a permis de
-            renforcer mon aisance à l’oral, ma capacité
-            à argumenter et ma maîtrise des échanges
-            commerciaux dans un environnement orienté
-            résultats et rémunéré à la performance.
-          </p>
+        <p>
+        Commercial en centre d’appel pendant 12 mois,
+        principalement en français et en espagnol.
+        Une expérience intensive qui m’a permis de
+        renforcer mon aisance à l’oral, ma capacité
+        à argumenter et ma maîtrise des échanges
+        commerciaux dans un environnement orienté
+        résultats et rémunéré à la performance.
+        </p>
         `
-      },
+    },
 
 
-      {
+    {
         number: "04",
         title: "Reconversion vers le Closing",
+
         text: `
-          <p>
-            Après cette expérience, j’ai eu envie d’aller
-            plus loin dans la vente et de me spécialiser
-            dans le Closing. J’ai donc investi du temps,
-            de l’énergie et des ressources dans un
-            accompagnement pour apprendre et travailler
-            ma technique.
-          </p>
+        <p>
+        Après cette expérience, j’ai eu envie d’aller
+        plus loin dans la vente et de me spécialiser
+        dans le Closing. J’ai donc investi du temps,
+        de l’énergie et des ressources dans un
+        accompagnement pour apprendre et travailler
+        ma technique.
+        </p>
 
-          <p>
-            Pour moi, le Closing est aussi un vrai challenge
-            personnel. J’ai envie de vendre quelque chose
-            auquel je crois, de bien faire les choses et
-            de sentir que mon travail a un réel impact.
-          </p>
+        <p>
+        Pour moi, le Closing est aussi un vrai challenge
+        personnel. J’ai envie de vendre quelque chose
+        auquel je crois, de bien faire les choses et
+        de sentir que mon travail a un réel impact.
+        </p>
         `
-      },
+    },
 
 
-      {
+    {
         number: "05",
         title: "Mise en pratique",
+
         text: `
-          <p>
-            J’ai ensuite eu une première expérience en
-            Setting DM sur une offre qui génère autour de
-            100K€ de cash collecté par mois.
-            J’ai pu apprendre à prospecter, qualifier les
-            prospects et surtout à avoir de vraies
-            conversations avec eux.
-          </p>
+        <p>
+        J’ai ensuite eu une première expérience en
+        Setting DM sur une offre qui génère autour de
+        100K€ de cash collecté par mois.
+        J’ai pu apprendre à prospecter, qualifier les
+        prospects et surtout à avoir de vraies
+        conversations avec eux.
+        </p>
 
-          <p>
-            Sur l’offre, 34K€ de cash ont été collectés
-            en juin et 29K€ en juillet, soit autour de
-            30% du cash collecté sur ces deux mois.
-          </p>
+        <p>
+        Sur l’offre, 34K€ de cash ont été collectés
+        en juin et 29K€ en juillet, soit autour de
+        30% du cash collecté sur ces deux mois.
+        </p>
 
-          <p>
-            Cette expérience m’a beaucoup appris sur la
-            prospection et la qualification.
-          </p>
+        <p>
+        Cette expérience m’a beaucoup appris sur la
+        prospection et la qualification.
+        </p>
 
-          <p>
-            Aujourd’hui, j’ai envie de me concentrer sur
-            ce qui m’anime vraiment : le Closing.
-          </p>
+        <p>
+        Aujourd’hui, j’ai envie de me concentrer sur
+        ce qui m’anime vraiment : le Closing.
+        </p>
         `
-      },
+    },
 
 
-      {
+    {
         number: "06",
         title: "Aujourd’hui",
+
         text: `
-          <p>
-            Aujourd’hui, je veux me lancer pleinement
-            dans le Closing.
-            Je cherche une équipe dans laquelle je peux
-            apprendre, progresser et m’investir pleinement,
-            tout en mettant mon expérience commerciale et
-            mon envie de tout déchirer au service de
-            l’équipe.
-          </p>
+        <p>
+        Aujourd’hui, je veux me lancer pleinement
+        dans le Closing.
+        Je cherche une équipe dans laquelle je peux
+        apprendre, progresser et m’investir pleinement,
+        tout en mettant mon expérience commerciale et
+        mon envie de tout déchirer au service de
+        l’équipe.
+        </p>
         `
-      }
+    }
 
-    ];
-
-
-    function showStep(index) {
-
-      /*
-        Change l'étape active
-      */
-
-      steps.forEach((step, i) => {
-
-        if (i === index) {
-          step.classList.add("active");
-        } else {
-          step.classList.remove("active");
-        }
-
-      });
+];
 
 
-      /*
-        Change le texte
-      */
+function showStep(index) {
 
-      contentNumber.textContent =
+    /* Active */
+
+    steps.forEach((step, i) => {
+
+        step.classList.toggle(
+            "active",
+            i === index
+        );
+
+    });
+
+
+    /* Texte */
+
+    contentNumber.textContent =
         data[index].number;
 
-      contentTitle.textContent =
+    contentTitle.textContent =
         data[index].title;
 
-      contentText.innerHTML =
+    contentText.innerHTML =
         data[index].text;
 
 
-      /*
-        Anime la ligne
-      */
+    /* Progression */
 
-      if (index === 0) {
+    if (index === 0) {
 
-        lineActive.style.width = "0%";
+        progress.style.width = "0%";
 
-      } else {
+    } else {
 
-        const percentage =
-          (index / 5) * 83.34;
+        const width =
+            (index / 5) * 92;
 
-        lineActive.style.width =
-          percentage + "%";
-
-      }
-
+        progress.style.width =
+            width + "%";
     }
 
+}
 
-    /*
-      Première étape affichée au chargement
-    */
 
-    showStep(0);
+/* Première étape */
 
-  </script>
+showStep(0);
+
+</script>
 
 </body>
 </html>
