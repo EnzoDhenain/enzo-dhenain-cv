@@ -1,365 +1,89 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mon parcours</title>
+  <title>Ma carte interactive</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      background: #191919;
-      color: #f5f5f5;
-      font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      padding: 50px 20px;
-    }
-
-    .timeline-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .timeline {
-      position: relative;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 55px;
+      justify-content: center;
+      align-items: center;
+      background: white;
     }
 
-    .timeline-line {
-      position: absolute;
-      top: 8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #383838;
-      z-index: 0;
-    }
-
-    .timeline-progress {
-      position: absolute;
-      top: 8px;
-      left: 0;
-      height: 2px;
-      width: 0%;
-      background: #7c8cff;
-      z-index: 1;
-      transition: width 0.5s ease;
-    }
-
-    .step {
-      position: relative;
-      z-index: 2;
-      text-align: center;
+    .carte {
+      width: 300px;
+      height: 400px;
+      perspective: 1000px;
       cursor: pointer;
-      width: 16.66%;
     }
 
-    .dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #383838;
-      margin: 0 auto 14px;
-      border: 3px solid #191919;
-      transition: all 0.3s ease;
+    .interieur {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.7s ease;
+      transform-style: preserve-3d;
     }
 
-    .step.active .dot,
-    .step.completed .dot {
-      background: #7c8cff;
+    .carte.retournee .interieur {
+      transform: rotateY(180deg);
     }
 
-    .step.active .dot {
-      box-shadow: 0 0 14px rgba(124, 140, 255, 0.45);
-      transform: scale(1.15);
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
     }
 
-    .step-number {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 7px;
-      transition: color 0.3s ease;
+    .face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .step.active .step-number,
-    .step.completed .step-number {
-      color: #7c8cff;
-    }
-
-    .step-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #777;
-      transition: color 0.3s ease;
-    }
-
-    .step.active .step-title {
-      color: #f5f5f5;
-    }
-
-    .content {
-      background: #202020;
-      border-left: 3px solid #7c8cff;
-      border-radius: 8px;
-      padding: 30px 32px;
-      min-height: 190px;
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-
-    .content.fade {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-
-    .content-number {
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      color: #7c8cff;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
-
-    .content h2 {
-      margin: 0 0 14px;
-      font-size: 24px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .content p {
-      margin: 0;
-      max-width: 720px;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #b8b8b8;
-    }
-
-    .content.final {
-      border-left-color: #7c8cff;
-    }
-
-    @media (max-width: 700px) {
-
-      body {
-        padding: 35px 15px;
-      }
-
-      .timeline {
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 35px;
-        padding-bottom: 15px;
-      }
-
-      .timeline-line,
-      .timeline-progress {
-        width: 100%;
-      }
-
-      .step {
-        min-width: 100px;
-      }
-
-      .content {
-        padding: 25px 22px;
-      }
-
-      .content h2 {
-        font-size: 21px;
-      }
-
-      .content p {
-        font-size: 14px;
-      }
+    .dos {
+      transform: rotateY(180deg);
     }
   </style>
 </head>
 
 <body>
 
-  <div class="timeline-wrapper">
+  <div class="carte" id="carte">
+    <div class="interieur">
 
-    <div class="timeline">
-
-      <div class="timeline-line"></div>
-      <div class="timeline-progress" id="progress"></div>
-
-      <div class="step active" data-index="0">
-        <div class="dot"></div>
-        <div class="step-number">01</div>
-        <div class="step-title">Formation</div>
+      <!-- PHOTO AVANT -->
+      <div class="face">
+        <img src="photo-dos.jpg" alt="Photo">
       </div>
 
-      <div class="step" data-index="1">
-        <div class="dot"></div>
-        <div class="step-number">02</div>
-        <div class="step-title">International</div>
-      </div>
-
-      <div class="step" data-index="2">
-        <div class="dot"></div>
-        <div class="step-number">03</div>
-        <div class="step-title">Barcelone</div>
-      </div>
-
-      <div class="step" data-index="3">
-        <div class="dot"></div>
-        <div class="step-number">04</div>
-        <div class="step-title">Closing</div>
-      </div>
-
-      <div class="step" data-index="4">
-        <div class="dot"></div>
-        <div class="step-number">05</div>
-        <div class="step-title">Mise en pratique</div>
-      </div>
-
-      <div class="step" data-index="5">
-        <div class="dot"></div>
-        <div class="step-number">06</div>
-        <div class="step-title">Aujourd’hui</div>
+      <!-- PHOTO ARRIÈRE -->
+      <div class="face dos">
+        <img src="Capture d’écran 2026-04-11 à 11.58.24.png" alt="Photo">
       </div>
 
     </div>
-
-    <div class="content" id="content">
-
-      <div class="content-number" id="contentNumber">
-        01 — Formation
-      </div>
-
-      <h2 id="contentTitle">
-        Formation
-      </h2>
-
-      <p id="contentText">
-        Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux.
-      </p>
-
-    </div>
-
   </div>
 
   <script>
+    const carte = document.getElementById("carte");
 
-    const steps = [
-      {
-        number: "01 — Formation",
-        title: "Formation",
-        text: "Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux."
-      },
-
-      {
-        number: "02 — International",
-        title: "International",
-        text: "Expériences commerciales en Suisse, en Belgique et en Espagne. Ces expériences m’ont appris à m’adapter rapidement à différents environnements et interlocuteurs."
-      },
-
-      {
-        number: "03 — 12 mois à Barcelone",
-        title: "12 mois à Barcelone",
-        text: "Commercial en centre d’appel pendant 12 mois à Barcelone, principalement en français et en espagnol. Une expérience qui m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et ma capacité à mener des échanges commerciaux."
-      },
-
-      {
-        number: "04 — Reconversion vers le Closing",
-        title: "Reconversion vers le Closing",
-        text: "J’ai choisi de me spécialiser dans le Closing et d’investir du temps, de l’énergie et des ressources dans une formation et un accompagnement dédiés."
-      },
-
-      {
-        number: "05 — Mise en pratique",
-        title: "Mise en pratique",
-        text: "Expérience en setting par DM sur une offre générant autour de 100K€ de cash collecté par mois. Cette expérience m’a permis de développer ma qualification des prospects et mon approche des échanges commerciaux. Aujourd’hui, je souhaite mettre mon expérience et mon énergie dans le Closing."
-      },
-
-      {
-        number: "06 — Aujourd’hui",
-        title: "Aujourd’hui",
-        text: "Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en Closing et mettre mon expérience commerciale au service d’une équipe ambitieuse."
-      }
-    ];
-
-    const stepElements = document.querySelectorAll(".step");
-    const progress = document.getElementById("progress");
-
-    const content = document.getElementById("content");
-    const contentNumber = document.getElementById("contentNumber");
-    const contentTitle = document.getElementById("contentTitle");
-    const contentText = document.getElementById("contentText");
-
-    let currentIndex = 0;
-
-    function updateProgress(index) {
-
-      const percentage =
-        (index / (steps.length - 1)) * 100;
-
-      progress.style.width = percentage + "%";
-
-      stepElements.forEach((step, i) => {
-
-        step.classList.remove("active");
-        step.classList.remove("completed");
-
-        if (i < index) {
-          step.classList.add("completed");
-        }
-
-        if (i === index) {
-          step.classList.add("active");
-        }
-
-      });
-    }
-
-    function updateContent(index) {
-
-      content.classList.add("fade");
-
-      setTimeout(() => {
-
-        contentNumber.textContent = steps[index].number;
-        contentTitle.textContent = steps[index].title;
-        contentText.textContent = steps[index].text;
-
-        if (index === steps.length - 1) {
-          content.classList.add("final");
-        } else {
-          content.classList.remove("final");
-        }
-
-        content.classList.remove("fade");
-
-      }, 200);
-    }
-
-    stepElements.forEach((step, index) => {
-
-      step.addEventListener("click", () => {
-
-        currentIndex = index;
-
-        updateProgress(index);
-        updateContent(index);
-
-      });
-
+    carte.addEventListener("click", function () {
+      carte.classList.toggle("retournee");
     });
-
-    updateProgress(0);
-
   </script>
 
 </body>
 </html>
+```
