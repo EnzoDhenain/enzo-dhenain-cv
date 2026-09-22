@@ -3,35 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test photos</title>
+
+  <title>Mon CV</title>
 
   <style>
-    body {
-      margin: 0;
-      padding: 40px;
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
+    * {
+      box-sizing: border-box;
     }
 
-    img {
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: black;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      font-family: Arial, sans-serif;
+    }
+
+    /* CARTE */
+    .carte {
       width: 300px;
       height: 400px;
-      object-fit: cover;
+      perspective: 1000px;
+    }
+
+    /* CONTENU QUI TOURNE */
+    .interieur {
+      width: 100%;
+      height: 100%;
+
+      position: relative;
+
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+    }
+
+    /* ROTATION */
+    .carte.retournee .interieur {
+      transform: rotateY(180deg);
+    }
+
+    /* CHAQUE FACE */
+    .face {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      top: 0;
+      left: 0;
+
       border-radius: 20px;
-      margin: 20px;
+      overflow: hidden;
+
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* PHOTOS */
+    .face img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+    }
+
+    /* DEUXIÈME FACE */
+    .dos {
+      transform: rotateY(180deg);
+    }
+
+    /* BOUTON */
+    #bouton {
+      margin-top: 25px;
+
+      padding: 12px 30px;
+
+      border: none;
+      border-radius: 30px;
+
+      background: white;
+      color: black;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    #bouton:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Mes deux photos</h1>
+  <div class="carte" id="carte">
 
-  <img src="photo-dos.jpg" alt="Photo 1">
+    <div class="interieur">
 
-  <img src="Capture d’écran 2026-04-11 à 11.58.24.png" alt="Photo 2">
+      <!-- PREMIÈRE PHOTO -->
+      <div class="face">
+        <img
+          src="photo-dos.jpg"
+          alt="Photo 1"
+        >
+      </div>
+
+      <!-- DEUXIÈME PHOTO -->
+      <div class="face dos">
+        <img
+          src="Capture d’écran 2026-04-11 à 11.58.24.png"
+          alt="Photo 2"
+        >
+      </div>
+
+    </div>
+
+  </div>
+
+  <button id="bouton">Retourner</button>
+
+  <script>
+    const carte = document.getElementById("carte");
+    const bouton = document.getElementById("bouton");
+
+    bouton.addEventListener("click", function () {
+      carte.classList.toggle("retournee");
+    });
+  </script>
 
 </body>
 </html>
