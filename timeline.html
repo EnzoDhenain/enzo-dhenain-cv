@@ -24,40 +24,36 @@
       margin: 0 auto;
     }
 
-    /* =========================
-       TITRE
-    ========================= */
+    /* TITRE */
 
     .intro {
       margin-bottom: 45px;
     }
 
     .intro-label {
+      margin-bottom: 12px;
+      color: #7c8cff;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 2px;
-      color: #7c8cff;
-      margin-bottom: 12px;
     }
 
     .intro-title {
-      margin: 0 0 12px 0;
-      font-size: 34px;
-      line-height: 1.2;
-      font-weight: 600;
+      margin: 0 0 12px;
       color: #ffffff;
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.2;
     }
 
     .intro-text {
       margin: 0;
+      color: #8f8f8f;
       font-size: 15px;
       line-height: 1.6;
-      color: #8f8f8f;
     }
 
-    /* =========================
-       TIMELINE
-    ========================= */
+    /* TIMELINE */
 
     .timeline {
       position: relative;
@@ -69,21 +65,21 @@
     .timeline-line {
       position: absolute;
       top: 8px;
-      left: 0;
       right: 0;
+      left: 0;
+      z-index: 0;
       height: 2px;
       background: #383838;
-      z-index: 0;
     }
 
     .timeline-progress {
       position: absolute;
       top: 8px;
       left: 0;
-      height: 2px;
-      width: 0%;
-      background: #7c8cff;
       z-index: 1;
+      width: 0%;
+      height: 2px;
+      background: #7c8cff;
       transition: width 0.5s ease;
     }
 
@@ -99,9 +95,9 @@
       width: 16px;
       height: 16px;
       margin: 0 auto 14px;
+      border: 3px solid #191919;
       border-radius: 50%;
       background: #383838;
-      border: 3px solid #191919;
       transition: all 0.3s ease;
     }
 
@@ -117,8 +113,8 @@
 
     .step-number {
       margin-bottom: 7px;
-      font-size: 12px;
       color: #666666;
+      font-size: 12px;
     }
 
     .step.active .step-number,
@@ -127,68 +123,66 @@
     }
 
     .step-title {
+      color: #777777;
       font-size: 13px;
       font-weight: 600;
-      color: #777777;
     }
 
     .step.active .step-title {
       color: #ffffff;
     }
 
-    /* =========================
-       CONTENU
-    ========================= */
+    /* CONTENU FIXE */
 
     .content {
-      min-height: 190px;
+      /* Hauteur fixe pour éviter que le bloc monte ou descende */
+      height: 230px;
       padding: 30px 32px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
       background: #202020;
       border-left: 3px solid #7c8cff;
       border-radius: 8px;
 
       opacity: 1;
-      transform: translateY(0);
-
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+      transition: opacity 0.25s ease;
     }
 
     .content.fade {
       opacity: 0;
-      transform: translateY(8px);
     }
 
     .content-number {
       margin-bottom: 10px;
+      color: #7c8cff;
       font-size: 12px;
       letter-spacing: 1.5px;
-      color: #7c8cff;
       text-transform: uppercase;
     }
 
     .content-title {
-      margin: 0 0 14px 0;
+      margin: 0 0 14px;
+      color: #ffffff;
       font-size: 24px;
       font-weight: 600;
-      color: #ffffff;
     }
 
     .content-text {
-      margin: 0;
       max-width: 720px;
+      margin: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+
+      color: #b8b8b8;
       font-size: 15px;
       line-height: 1.7;
-      color: #b8b8b8;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* MOBILE */
 
     @media (max-width: 700px) {
-
       body {
         padding: 35px 15px;
       }
@@ -202,10 +196,10 @@
       }
 
       .timeline {
-        overflow-x: auto;
         justify-content: flex-start;
         gap: 35px;
         padding-bottom: 15px;
+        overflow-x: auto;
       }
 
       .step {
@@ -213,6 +207,7 @@
       }
 
       .content {
+        height: 285px;
         padding: 25px 22px;
       }
 
@@ -228,15 +223,9 @@
 </head>
 
 <body>
-
   <div class="container">
 
-    <!-- =========================
-         INTRO
-    ========================= -->
-
     <div class="intro">
-
       <div class="intro-label">
         MON PARCOURS
       </div>
@@ -248,122 +237,50 @@
       <p class="intro-text">
         Une évolution construite autour de la vente, de l'adaptation et de la relation client.
       </p>
-
     </div>
-
-
-    <!-- =========================
-         TIMELINE
-    ========================= -->
 
     <div class="timeline">
-
       <div class="timeline-line"></div>
-
-      <div
-        class="timeline-progress"
-        id="progress">
-      </div>
-
+      <div class="timeline-progress" id="progress"></div>
 
       <div class="step active" data-index="0">
-
         <div class="dot"></div>
-
-        <div class="step-number">
-          01
-        </div>
-
-        <div class="step-title">
-          Formation
-        </div>
-
+        <div class="step-number">01</div>
+        <div class="step-title">Formation</div>
       </div>
-
 
       <div class="step" data-index="1">
-
         <div class="dot"></div>
-
-        <div class="step-number">
-          02
-        </div>
-
-        <div class="step-title">
-          International
-        </div>
-
+        <div class="step-number">02</div>
+        <div class="step-title">International</div>
       </div>
-
 
       <div class="step" data-index="2">
-
         <div class="dot"></div>
-
-        <div class="step-number">
-          03
-        </div>
-
-        <div class="step-title">
-          Barcelone
-        </div>
-
+        <div class="step-number">03</div>
+        <div class="step-title">Barcelone</div>
       </div>
-
 
       <div class="step" data-index="3">
-
         <div class="dot"></div>
-
-        <div class="step-number">
-          04
-        </div>
-
-        <div class="step-title">
-          Closing
-        </div>
-
+        <div class="step-number">04</div>
+        <div class="step-title">Closing</div>
       </div>
-
 
       <div class="step" data-index="4">
-
         <div class="dot"></div>
-
-        <div class="step-number">
-          05
-        </div>
-
-        <div class="step-title">
-          Mise en pratique
-        </div>
-
+        <div class="step-number">05</div>
+        <div class="step-title">Mise en pratique</div>
       </div>
-
 
       <div class="step" data-index="5">
-
         <div class="dot"></div>
-
-        <div class="step-number">
-          06
-        </div>
-
-        <div class="step-title">
-          Aujourd’hui
-        </div>
-
+        <div class="step-number">06</div>
+        <div class="step-title">Aujourd’hui</div>
       </div>
-
     </div>
 
-
-    <!-- =========================
-         CONTENU
-    ========================= -->
-
     <div class="content" id="content">
-
       <div class="content-number" id="contentNumber">
         01 — Formation
       </div>
@@ -375,87 +292,57 @@
       <p class="content-text" id="contentText">
         Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux.
       </p>
-
     </div>
 
   </div>
 
-
   <script>
-
     const steps = [
-
       {
         number: "01 — Formation",
         title: "Formation",
         text: "Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux."
       },
-
       {
         number: "02 — International",
         title: "International",
         text: "Expériences commerciales en Suisse, en Belgique et en Espagne. Ces expériences m’ont appris à m’adapter rapidement à différents environnements et interlocuteurs."
       },
-
       {
         number: "03 — 12 mois à Barcelone",
         title: "12 mois à Barcelone",
         text: "Commercial en centre d’appel pendant 12 mois à Barcelone, principalement en français et en espagnol. Une expérience qui m’a permis de développer mon aisance à l’oral, ma capacité d’adaptation et ma capacité à mener des échanges commerciaux."
       },
-
       {
         number: "04 — Reconversion vers le Closing",
         title: "Reconversion vers le Closing",
         text: "J’ai choisi de me spécialiser dans le Closing et d’investir du temps, de l’énergie et des ressources dans une formation et un accompagnement dédiés."
       },
-
       {
         number: "05 — Mise en pratique",
         title: "Mise en pratique",
         text: "Expérience en setting par DM sur une offre générant autour de 100K€ de cash collecté par mois. Cette expérience m’a permis de développer ma qualification des prospects et mon approche des échanges commerciaux. Aujourd’hui, je souhaite mettre mon expérience et mon énergie dans le Closing."
       },
-
       {
         number: "06 — Aujourd’hui",
         title: "Aujourd’hui",
         text: "Je recherche aujourd’hui une offre sur laquelle m’investir pleinement, développer mon expérience en Closing et mettre mon expérience commerciale au service d’une équipe ambitieuse."
       }
-
     ];
 
-
-    const stepElements =
-      document.querySelectorAll(".step");
-
-    const progress =
-      document.getElementById("progress");
-
-    const content =
-      document.getElementById("content");
-
-    const contentNumber =
-      document.getElementById("contentNumber");
-
-    const contentTitle =
-      document.getElementById("contentTitle");
-
-    const contentText =
-      document.getElementById("contentText");
-
+    const stepElements = document.querySelectorAll(".step");
+    const progress = document.getElementById("progress");
+    const content = document.getElementById("content");
+    const contentNumber = document.getElementById("contentNumber");
+    const contentTitle = document.getElementById("contentTitle");
+    const contentText = document.getElementById("contentText");
 
     function updateProgress(index) {
-
-      const percentage =
-        (index / (steps.length - 1)) * 100;
-
-      progress.style.width =
-        percentage + "%";
-
+      const percentage = (index / (steps.length - 1)) * 100;
+      progress.style.width = percentage + "%";
 
       stepElements.forEach((step, i) => {
-
-        step.classList.remove("active");
-        step.classList.remove("completed");
+        step.classList.remove("active", "completed");
 
         if (i < index) {
           step.classList.add("completed");
@@ -464,49 +351,32 @@
         if (i === index) {
           step.classList.add("active");
         }
-
       });
-
     }
 
-
     function updateContent(index) {
-
       content.classList.add("fade");
 
       setTimeout(() => {
+        contentNumber.textContent = steps[index].number;
+        contentTitle.textContent = steps[index].title;
+        contentText.textContent = steps[index].text;
 
-        contentNumber.textContent =
-          steps[index].number;
-
-        contentTitle.textContent =
-          steps[index].title;
-
-        contentText.textContent =
-          steps[index].text;
+        /* Replace le défilement interne du texte en haut */
+        contentText.scrollTop = 0;
 
         content.classList.remove("fade");
-
       }, 200);
-
     }
 
-
     stepElements.forEach((step, index) => {
-
       step.addEventListener("click", () => {
-
         updateProgress(index);
         updateContent(index);
-
       });
-
     });
 
-
     updateProgress(0);
-
   </script>
-
 </body>
 </html>
