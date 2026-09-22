@@ -3,87 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carte photo</title>
+
+  <title>Mon profil</title>
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
+    * {
+      box-sizing: border-box;
     }
 
     body {
+      margin: 0;
+      min-height: 100vh;
+      background: #000;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: white;
+      gap: 25px;
+      font-family: Arial, sans-serif;
     }
 
+    /* CARTE */
     .carte {
       width: 300px;
       height: 400px;
-      perspective: 1000px;
-      cursor: pointer;
+      perspective: 1200px;
     }
 
-    .interieur {
+    .carte-interieur {
       width: 100%;
       height: 100%;
       position: relative;
-      transition: transform 0.8s ease;
       transform-style: preserve-3d;
+      transition: transform 0.8s ease;
     }
 
-    .carte.retournee .interieur {
+    /* Rotation */
+    .carte.retournee .carte-interieur {
       transform: rotateY(180deg);
     }
 
+    /* LES DEUX FACES */
     .face {
       position: absolute;
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
-      overflow: hidden;
+
       border-radius: 20px;
+      overflow: hidden;
+
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
 
+    /* IMAGES */
     .face img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
     }
 
-    .arriere {
+    /* DOS */
+    .dos {
       transform: rotateY(180deg);
+    }
+
+    /* BOUTON */
+    button {
+      border: none;
+      background: white;
+      color: black;
+
+      padding: 12px 25px;
+      border-radius: 30px;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: transform 0.2s ease,
+                  opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.95);
     }
   </style>
 </head>
 
 <body>
 
+  <!-- CARTE -->
   <div class="carte" id="carte">
-    <div class="interieur">
 
+    <div class="carte-interieur">
+
+      <!-- PHOTO 1 -->
       <div class="face">
-        <img src="photo-dos.jpg" alt="Photo">
+        <img
+          src="photo-dos.jpg"
+          alt="Photo 1"
+        >
       </div>
 
-      <div class="face arriere">
-        <img src="Capture d’écran 2026-04-11 à 11.58.24.png" alt="Photo">
+      <!-- PHOTO 2 -->
+      <div class="face dos">
+        <img
+          src="Capture d’écran 2026-04-11 à 11.58.24.png"
+          alt="Photo 2"
+        >
       </div>
 
     </div>
+
   </div>
+
+  <!-- BOUTON -->
+  <button id="bouton">
+    Retourner
+  </button>
 
   <script>
     const carte = document.getElementById("carte");
+    const bouton = document.getElementById("bouton");
 
-    carte.addEventListener("click", function() {
+    bouton.addEventListener("click", function () {
       carte.classList.toggle("retournee");
     });
   </script>
