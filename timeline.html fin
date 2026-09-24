@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mon parcours — Enzo Dhenain</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #171717;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1115px;
+      margin: 0 auto;
+      padding: 60px 0 80px;
+    }
+
+    /* TITRE */
+
+    .eyebrow {
+      color: #7185ff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.1;
+      font-weight: 750;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      color: #999999;
+      font-size: 19px;
+      line-height: 1.5;
+      margin-bottom: 65px;
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      position: relative;
+      width: 100%;
+      margin-bottom: 60px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #363636;
+    }
+
+    .steps {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .step {
+      width: 16.666%;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+    }
+
+    .dot {
+      width: 13px;
+      height: 13px;
+      background: #383838;
+      border-radius: 50%;
+      margin: 4px auto 22px;
+      transition: 0.25s ease;
+    }
+
+    .number {
+      color: #666666;
+      font-size: 14px;
+      margin-bottom: 8px;
+      transition: 0.25s ease;
+    }
+
+    .label {
+      color: #6e6e6e;
+      font-size: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: 0.25s ease;
+    }
+
+    .step.active .dot {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      margin-bottom: 20px;
+      background: #7185ff;
+      box-shadow: 0 0 0 5px rgba(113, 133, 255, 0.10),
+                  0 0 22px rgba(113, 133, 255, 0.55);
+    }
+
+    .step.active .number {
+      color: #7185ff;
+    }
+
+    .step.active .label {
+      color: #ffffff;
+    }
+
+    /* CONTENU */
+
+    .content-box {
+      width: 100%;
+      min-height: 235px;
+      background: #202020;
+      border-radius: 10px;
+      border-left: 4px solid #7185ff;
+      padding: 36px 39px;
+      transition: opacity 0.2s ease;
+    }
+
+    .content-number {
+      color: #7185ff;
+      font-size: 15px;
+      letter-spacing: 2px;
+      font-weight: 500;
+      margin-bottom: 13px;
+    }
+
+    .content-title {
+      font-size: 30px;
+      font-weight: 750;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .content-text {
+      color: #b4b4b4;
+      font-size: 18px;
+      line-height: 1.75;
+      font-weight: 500;
+      max-width: 930px;
+    }
+
+    /* RETOUR */
+
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 45px auto 0;
+      color: #8b8b8b;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    .back:hover {
+      color: #ffffff;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .container {
+        padding: 40px 25px 60px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .intro {
+        font-size: 16px;
+        margin-bottom: 50px;
+      }
+
+      .timeline {
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+
+      .steps {
+        min-width: 850px;
+      }
+
+      .timeline-line {
+        min-width: 850px;
+      }
+
+      .content-box {
+        padding: 30px 25px;
+      }
+
+      .content-title {
+        font-size: 26px;
+      }
+
+      .content-text {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- TITRE -->
+
+    <div class="eyebrow">
+      MON PARCOURS
+    </div>
+
+    <h1>
+      De la vente au closing
+    </h1>
+
+    <p class="intro">
+      Une évolution construite autour de la vente, de l'adaptation et de la relation client.
+    </p>
+
+
+    <!-- TIMELINE -->
+
+    <section class="timeline">
+
+      <div class="timeline-line"></div>
+
+      <div class="steps">
+
+        <div class="step active"
+             onclick="showStep(0)">
+          <div class="dot"></div>
+          <div class="number">01</div>
+          <div class="label">Formation</div>
+        </div>
+
+        <div class="step"
+             onclick="showStep(1)">
+          <div class="dot"></div>
+          <div class="number">02</div>
+          <div class="label">International</div>
+        </div>
+
+        <div class="step"
+             onclick="showStep(2)">
+          <div class="dot"></div>
+          <div class="number">03</div>
+          <div class="label">Barcelone</div>
+        </div>
+
+        <div class="step"
+             onclick="showStep(3)">
+          <div class="dot"></div>
+          <div class="number">04</div>
+          <div class="label">Closing</div>
+        </div>
+
+        <div class="step"
+             onclick="showStep(4)">
+          <div class="dot"></div>
+          <div class="number">05</div>
+          <div class="label">Mise en pratique</div>
+        </div>
+
+        <div class="step"
+             onclick="showStep(5)">
+          <div class="dot"></div>
+          <div class="number">06</div>
+          <div class="label">Aujourd'hui</div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CONTENU -->
+
+    <section class="content-box" id="contentBox">
+
+      <div class="content-number" id="contentNumber">
+        01 — FORMATION
+      </div>
+
+      <h2 class="content-title" id="contentTitle">
+        Formation
+      </h2>
+
+      <p class="content-text" id="contentText">
+        Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux.
+      </p>
+
+    </section>
+
+
+    <a href="index.html" class="back">
+      ← Retour
+    </a>
+
+  </main>
+
+
+  <script>
+
+    const steps = [
+      {
+        number: "01 — FORMATION",
+        title: "Formation",
+        text: "Études de commerce, gestion et finance. Une première base pour comprendre le fonctionnement d’une entreprise, les chiffres et les enjeux commerciaux."
+      },
+
+      {
+        number: "02 — INTERNATIONAL",
+        title: "International",
+        text: "Une expérience internationale qui m’a permis de développer mon autonomie, mon adaptabilité et ma capacité à évoluer dans de nouveaux environnements."
+      },
+
+      {
+        number: "03 — BARCELONE",
+        title: "Barcelone",
+        text: "Une expérience à Barcelone qui m’a permis de sortir de ma zone de confort et de développer davantage mes compétences commerciales et relationnelles."
+      },
+
+      {
+        number: "04 — CLOSING",
+        title: "Closing",
+        text: "Découverte du closing et développement d’une approche commerciale davantage centrée sur l’écoute, la compréhension des besoins et la prise de décision."
+      },
+
+      {
+        number: "05 — MISE EN PRATIQUE",
+        title: "Mise en pratique",
+        text: "Mise en application concrète des techniques de vente, gestion des objections, qualification des prospects et amélioration continue des performances."
+      },
+
+      {
+        number: "06 — AUJOURD'HUI",
+        title: "Aujourd'hui",
+        text: "Aujourd’hui, je développe mon expertise dans la vente et le closing avec une approche orientée résultats, relation client et performance."
+      }
+    ];
+
+
+    function showStep(index) {
+
+      const allSteps = document.querySelectorAll(".step");
+
+      allSteps.forEach((step) => {
+        step.classList.remove("active");
+      });
+
+      allSteps[index].classList.add("active");
+
+      const contentBox = document.getElementById("contentBox");
+
+      contentBox.style.opacity = "0";
+
+      setTimeout(() => {
+
+        document.getElementById("contentNumber").textContent =
+          steps[index].number;
+
+        document.getElementById("contentTitle").textContent =
+          steps[index].title;
+
+        document.getElementById("contentText").textContent =
+          steps[index].text;
+
+        contentBox.style.opacity = "1";
+
+      }, 150);
+    }
+
+  </script>
+
+</body>
+</html>
